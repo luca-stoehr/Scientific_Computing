@@ -30,6 +30,32 @@ class TestArithmetic_Arranger(unittest.TestCase):
       case4 = "123  49"
       arithmetic_arranger.find_operator(case4)
 
+  def test_check_syntax(self):
+    case1 = "32 + 698"
+    self.assertTrue(arithmetic_arranger.check_syntax(case1, True))
+    case2 = "3801 - 2"
+    self.assertTrue(arithmetic_arranger.check_syntax(case2, False))
+    with self.assertRaises(ValueError):
+      case3 = "12A3 + 4b9"
+      arithmetic_arranger.check_syntax(case3, True)
+      case4 = "123 + 4b9"
+      arithmetic_arranger.check_syntax(case4, True)
+      case5 = "12A3 + 49"
+      arithmetic_arranger.check_syntax(case5, True)
+      case2 = "38013 - 2"
+      arithmetic_arranger.check_syntax(case2, False)
+
+  def test_calc_separator(self):
+    case1 = "32 + 698"
+    self.assertEqual(arithmetic_arranger.calc_separator(case1, True),('32','698'))
+    case2 = "3801 - 2"
+    self.assertEqual(arithmetic_arranger.calc_separator(case2, False),('3801','2'))
+    with self.assertRaises(ValueError):
+      case3 = "3801- 2"
+      arithmetic_arranger.calc_separator(case3, False)
+
+
+
 
 if __name__ == '__main__':
   unittest.main()
