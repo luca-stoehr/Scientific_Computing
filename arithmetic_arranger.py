@@ -10,7 +10,7 @@ def arithmetic_arranger(problems, solve=False):
   for problem in problems:
     operator = find_operator(problem)
     if isinstance(operator, str):
-      return 'Error: Operator must be "+" or "-".'
+      return "Error: Operator must be '+' or '-'."
     check_syn = check_syntax(problem, operator)
     if isinstance(check_syn, str):
       return check_syn
